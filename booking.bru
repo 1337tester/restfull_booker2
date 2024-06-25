@@ -1,0 +1,29 @@
+meta {
+  name: booking
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{url}}/booking
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstname": "Fahrettin",
+    "lastname": "Brown",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2018-01-01",
+      "checkout": "2019-01-01"
+    },
+    "additionalneeds": "Breakfast"
+  }
+}
