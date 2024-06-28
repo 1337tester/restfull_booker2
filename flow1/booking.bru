@@ -1,7 +1,7 @@
 meta {
   name: booking
   type: http
-  seq: 5
+  seq: 1
 }
 
 post {
@@ -26,4 +26,8 @@ body:json {
     },
     "additionalneeds": "Breakfast"
   }
+}
+
+assert {
+  res.status: eq 418
 }

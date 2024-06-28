@@ -1,7 +1,7 @@
 meta {
   name: bookingid
   type: http
-  seq: 7
+  seq: 2
 }
 
 get {
@@ -10,7 +10,11 @@ get {
   auth: none
 }
 
-query {
+params:query {
   firstname: Fahrettin
   lastname: Brown
+}
+
+assert {
+  re.status: eq 200
 }
