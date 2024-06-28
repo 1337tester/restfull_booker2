@@ -1,11 +1,11 @@
 meta {
   name: Authorization
   type: http
-  seq: 5
+  seq: 1
 }
 
 post {
-  url: https://restful-booker.herokuapp.com/auth
+  url: {{url}}/auth
   body: json
   auth: none
 }
@@ -16,6 +16,10 @@ headers {
 
 body:json {
   { "username" : "admin", "password" : "password123" }
+}
+
+assert {
+  res.status: eq 200
 }
 
 script:post-response {

@@ -1,0 +1,15 @@
+meta {
+  name: getbooking
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{url}}/booking/{{bookingid}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 418
+}

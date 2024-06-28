@@ -1,0 +1,20 @@
+meta {
+  name: Del booking
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{url}}/booking/{{bookingid}}
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Cookie: token={{token}}
+}
+
+assert {
+  res.status: eq 201
+}

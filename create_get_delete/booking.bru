@@ -1,0 +1,42 @@
+meta {
+  name: booking
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/booking
+  body: json
+  auth: none
+}
+
+params:query {
+  : 
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstname": "{{firstname}}",
+    "lastname": "{{lastname}}",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2018-01-01",
+      "checkout": "2019-01-01"
+    },
+    "additionalneeds": "Breakfast"
+  }
+}
+
+assert {
+  res.status: eq 418
+}
+
+script:pre-request {
+  bru.setEnvVar("bookingid", 55);
+  console.log("This is bookingid: " + bru.getEnvVar("bookingid"));
+}
