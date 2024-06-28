@@ -10,14 +10,18 @@ post {
   auth: none
 }
 
+params:query {
+  : 
+}
+
 headers {
   Content-Type: application/json
 }
 
 body:json {
   {
-    "firstname": "Fahrettin",
-    "lastname": "Brown",
+    "firstname": {{firstname}},
+    "lastname": {{lastname}},
     "totalprice": 111,
     "depositpaid": true,
     "bookingdates": {
