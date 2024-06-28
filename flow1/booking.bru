@@ -35,3 +35,8 @@ body:json {
 assert {
   res.status: eq 418
 }
+
+script:pre-request {
+  bru.setEnvVar("bookingid", 55);
+  console.log("This is bookingid: " + bru.getEnvVar("bookingid"));
+}
