@@ -1,0 +1,25 @@
+meta {
+  name: Authorization
+  type: http
+  seq: 5
+}
+
+post {
+  url: https://restful-booker.herokuapp.com/auth
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  { "username" : "admin", "password" : "password123" }
+}
+
+script:post-response {
+  bru.setEnvVar("token", res.body.token);
+  
+  console.log("This is token: " + bru.getEnvVar("token"));
+}
