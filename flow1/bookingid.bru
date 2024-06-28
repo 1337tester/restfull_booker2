@@ -5,16 +5,16 @@ meta {
 }
 
 get {
-  url: {{url}}/booking?firstname=Fahrettin&lastname=Brown
+  url: {{url}}/booking?firstname={{firstname}}&lastname={{lastname}}
   body: none
   auth: none
 }
 
 params:query {
-  firstname: Fahrettin
-  lastname: Brown
+  firstname: {{firstname}}
+  lastname: {{lastname}}
 }
 
 assert {
-  re.status: eq 200
+  res.status: eq 200
 }
