@@ -17,6 +17,7 @@ params:query {
 
 assert {
   res.status: eq 200
+  res.body[0].bookingid: isNumber 
 }
 
 script:post-response {
