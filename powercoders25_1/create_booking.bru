@@ -1,0 +1,55 @@
+meta {
+  name: create_booking
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/booking
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "firstname": "{{FirstName}}",
+    "lastname": "{{LastName}}",
+    "totalprice": 111,
+    "depositpaid": true,
+    "bookingdates": {
+      "checkin": "2018-01-03",
+      "checkout": "2019-01-01"
+    },
+    "additionalneeds": "Breakfast"
+  }
+}
+
+assert {
+  res.status: eq 418
+}
+
+script:pre-request {
+  // Simplified nanoid-like function for random string generation
+  function nanoid(size = 10) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+    for (let i = 0; i < size; i++) {
+      result += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    return result;
+  }
+  
+  // Generate random name-like strings
+  const FirstName = nanoid(6).charAt(0).toUpperCase() + nanoid(5).toLowerCase(); // e.g., "Abcdef"
+  const LastName = nanoid(8).charAt(0).toUpperCase() + nanoid(7).toLowerCase(); // e.g., "Ghjklmno"
+  
+  // Set variables for use in the request
+  bru.setEnvVar("FirstName", FirstName);
+  bru.setEnvVar("LastName", LastName);
+  
+  console.log(FirstName, LastName);
+}

@@ -1,0 +1,19 @@
+meta {
+  name: delete_bookingid
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{url}}/booking/{{BookingId}}
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+assert {
+  res.status: eq 201
+}

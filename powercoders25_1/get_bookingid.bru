@@ -1,0 +1,25 @@
+meta {
+  name: get_bookingid
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{url}}/booking?firstname={{FirstName}}&lastname={{LastName}}
+  body: none
+  auth: none
+}
+
+params:query {
+  firstname: {{FirstName}}
+  lastname: {{LastName}}
+}
+
+assert {
+  res.body[0].bookingid: isNumber
+}
+
+script:post-response {
+  bru.setEnvVar("BookingId", res.body[0].bookingid);
+  
+}
