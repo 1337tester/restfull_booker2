@@ -33,23 +33,22 @@ assert {
 }
 
 script:pre-request {
-  // Simplified nanoid-like function for random string generation
-  function nanoid(size = 10) {
-    const alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let result = '';
-    for (let i = 0; i < size; i++) {
-      result += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-    }
-    return result;
-  }
+  const customAlphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const customNanoid = require('nanoid').customAlphabet;
+  const customSuffix = customNanoid(customAlphabet, 5);
+  var suffix = customSuffix()
   
   // Generate random name-like strings
-  const FirstName = nanoid(6).charAt(0).toUpperCase() + nanoid(5).toLowerCase(); // e.g., "Abcdef"
-  const LastName = nanoid(8).charAt(0).toUpperCase() + nanoid(7).toLowerCase(); // e.g., "Ghjklmno"
+  const FirstName = "Jeanluck" + suffix
+  const LastName = "Piccard" + suffix
   
   // Set variables for use in the request
   bru.setEnvVar("FirstName", FirstName);
   bru.setEnvVar("LastName", LastName);
   
   console.log(FirstName, LastName);
+  
+  
+  // Simplified nanoid-like function for random string generation
+  
 }
